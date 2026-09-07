@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-void: #05070c;
+  --color-panel: #0c1017;
+  --color-panel-2: #121722;
+  --color-edge: #1e2634;
+  --color-edge-soft: #171d29;
+  --color-muted: #8b95a8;
+  --color-dim: #5d6779;
+  --color-mint: #3ddc97;
+  --color-amber: #f0b429;
+  --color-rose: #f2555a;
+  --color-violet: #8b7bf7;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    background: var(--color-void);
+    color: #e8ecf3;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-image:
+      radial-gradient(60rem 40rem at 15% -10%, rgb(61 220 151 / 0.07), transparent 60%),
+      radial-gradient(50rem 35rem at 95% 0%, rgb(139 123 247 / 0.07), transparent 55%);
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: rgb(61 220 151 / 0.28);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  /* Numbers in tables should never jitter while polling. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .panel {
+    background: color-mix(in oklab, var(--color-panel) 92%, transparent);
+    border: 1px solid var(--color-edge);
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .field {
+    width: 100%;
+    background: var(--color-void);
+    border: 1px solid var(--color-edge);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    color: #e8ecf3;
+    outline: none;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  .field::placeholder {
+    color: var(--color-dim);
+  }
+
+  .field:focus {
+    border-color: color-mix(in oklab, var(--color-mint) 60%, var(--color-edge));
+    box-shadow: 0 0 0 3px rgb(61 220 151 / 0.12);
+  }
+
+  .field:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes cv-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise {
+  animation: cv-rise 220ms ease-out both;
+}
+
+@keyframes cv-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-edge-soft);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.06), transparent);
+  animation: cv-shimmer 1.4s infinite;
+}

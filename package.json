@@ -1,0 +1,52 @@
+{
+  "name": "cryptovault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-custodial multi-chain wallet and ERC-20 deployment dashboard (BTC / ETH / SOL / XRP / TON)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "compile:contract": "node scripts/compile-contract.mjs",
+    "test:derivation": "node --import ./scripts/ts-loader.mjs scripts/test-derivation.ts",
+    "test:evm": "node --import ./scripts/ts-loader.mjs scripts/test-evm-integration.ts",
+    "test:e2e": "node scripts/e2e-smoke.mjs",
+    "test": "npm run typecheck && npm run test:derivation && npm run test:swap",
+    "setup:solana-fees": "node scripts/setup-solana-fees.mjs",
+    "test:swap": "node --import ./scripts/ts-loader.mjs scripts/test-swap.ts"
+  },
+  "dependencies": {
+    "@noble/curves": "^2.4.0",
+    "@noble/hashes": "^2.4.0",
+    "@scure/base": "^2.0.0",
+    "@scure/bip32": "^2.4.0",
+    "@scure/bip39": "^2.4.0",
+    "@scure/btc-signer": "^2.4.1",
+    "@solana/spl-token": "^0.4.15",
+    "@solana/web3.js": "^1.98.4",
+    "@ton/core": "^0.63.1",
+    "@ton/crypto": "^3.3.0",
+    "@ton/ton": "^16.3.0",
+    "buffer": "^6.0.3",
+    "ethers": "^6.17.0",
+    "next": "16.3.4",
+    "qrcode": "^1.5.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "xrpl": "^5.1.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@openzeppelin/contracts": "^5.6.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.0",
+    "solc": "^0.8.36",
+    "tailwindcss": "^4.3.3",
+    "typescript": "5.9.3"
+  }
+}
