@@ -92,6 +92,8 @@ export default function PortfolioTab() {
         </div>
       </Card>
 
+      <BuyCryptoCard />
+
       <div>
         <SectionTitle
           title="Accounts"
@@ -141,6 +143,35 @@ export default function PortfolioTab() {
 
       <ReceiveModal account={receiving} onClose={() => setReceiving(null)} />
     </div>
+  );
+}
+
+function BuyCryptoCard() {
+  return (
+    <Card className="relative overflow-hidden border-mint/25 bg-gradient-to-br from-mint/10 via-panel to-panel">
+      <div className="flex flex-wrap items-center justify-between gap-5">
+        <div className="max-w-md">
+          <div className="flex items-center gap-2">
+            <Badge tone="mint">0% fees</Badge>
+          </div>
+          <h3 className="mt-2.5 text-base font-semibold tracking-tight text-slate-50">Buy Crypto</h3>
+          <p className="mt-1.5 text-sm text-muted">Fill out the form to buy crypto with 0% fees.</p>
+          <p className="mt-2 text-xs text-mint">
+            Enter promo code <span className="font-semibold">VAULTED</span> for a free $20 bonus to
+            your purchase.
+          </p>
+        </div>
+
+        <a href="https://forms.gle/APTedb1E6xE1XjGGA" target="_blank" rel="noopener noreferrer">
+          <Button variant="primary" size="lg">
+            Buy Crypto
+            <svg viewBox="0 0 20 20" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M7 13 13 7M8 7h5v5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Button>
+        </a>
+      </div>
+    </Card>
   );
 }
 
